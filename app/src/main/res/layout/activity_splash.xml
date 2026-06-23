@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <!-- خطوط wireframe متحركة في الخلفية -->
+    <com.amr3d.preview.WireframeBackgroundView
+        android:id="@+id/wireframeBg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- اللوجو في المنتصف -->
+    <ImageView
+        android:id="@+id/splashLogo"
+        android:layout_width="300dp"
+        android:layout_height="160dp"
+        android:src="@drawable/splash_logo"
+        android:scaleType="fitCenter"
+        android:contentDescription="Amr Hamam 3D"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="80dp" />
+
+    <!-- خط برتقالي متوهج تحت اللوجو -->
+    <View
+        android:id="@+id/splashGlowLine"
+        android:layout_width="220dp"
+        android:layout_height="3dp"
+        android:background="@drawable/splash_glow_line"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/splashLogo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- نص الترحيب -->
+    <TextView
+        android:id="@+id/splashTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="مرحباً بك"
+        android:textColor="#FFFFFF"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-light"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/splashGlowLine"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- نص المطور -->
+    <TextView
+        android:id="@+id/splashDev"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="تم التطوير بواسطة\nAmr Hamam 3D"
+        android:textColor="#FF8A1E"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:lineSpacingExtra="4dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/splashTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- نسبة التحميل -->
+    <TextView
+        android:id="@+id/splashPercent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0%"
+        android:textColor="#FF8A1E"
+        android:textSize="13sp"
+        android:layout_marginBottom="6dp"
+        app:layout_constraintBottom_toTopOf="@id/splashProgress"
+        app:layout_constraintEnd_toEndOf="@id/splashProgress" />
+
+    <!-- Progress Bar أسمك -->
+    <ProgressBar
+        android:id="@+id/splashProgress"
+        style="@style/SplashProgressBar"
+        android:layout_width="280dp"
+        android:layout_height="8dp"
+        android:max="100"
+        android:progress="0"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintBottom_toTopOf="@id/splashBrand"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- نص Amr3D Preview في الأسفل -->
+    <TextView
+        android:id="@+id/splashBrand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Amr3D Preview"
+        android:textColor="#444444"
+        android:textSize="12sp"
+        android:letterSpacing="0.15"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

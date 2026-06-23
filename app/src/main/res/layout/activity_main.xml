@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_dark">
+
+    <!-- Top App Bar -->
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@color/surface_dark"
+        android:paddingStart="16dp"
+        android:paddingEnd="8dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/appLogo"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/app_logo" />
+
+        <TextView
+            android:id="@+id/appTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/app_name"
+            android:textColor="@color/text_primary"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/btnWhatsapp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="8dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/whatsapp_contact"
+            android:padding="4dp"
+            android:src="@drawable/ic_whatsapp" />
+
+        <!-- زر تصفح الملفات -->
+        <ImageButton
+            android:id="@+id/btnOpenFile"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:background="@drawable/bg_open_button"
+            android:src="@android:drawable/ic_menu_add"
+            android:contentDescription="@string/open_file"
+            android:padding="8dp"
+            android:tint="#FFFFFF" />
+
+    </LinearLayout>
+
+    <!-- 3D Viewer -->
+    <FrameLayout
+        android:id="@+id/viewerContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/topBar"
+        app:layout_constraintBottom_toTopOf="@id/bottomToolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.amr3d.preview.GLViewerView
+            android:id="@+id/glViewerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <!-- Empty state -->
+        <LinearLayout
+            android:id="@+id/emptyStateLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/emptyStateText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no_file_loaded"
+                android:textColor="@color/text_secondary"
+                android:textSize="16sp"
+                android:layout_marginBottom="20dp" />
+
+            <!-- زر فتح الملف في وسط الشاشة -->
+            <Button
+                android:id="@+id/btnOpenFileCenter"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="200dp"
+                android:layout_height="56dp"
+                android:text="@string/open_file"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                android:backgroundTint="@color/accent_orange" />
+
+        </LinearLayout>
+
+        <!-- ViewCube كـ FAB قابل للتوسيع -->
+        <FrameLayout
+            android:id="@+id/viewCubeContainer"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+            android:layout_gravity="top|end"
+            android:layout_margin="8dp">
+
+            <com.amr3d.preview.ViewCubeView
+                android:id="@+id/viewCube"
+                android:layout_width="76dp"
+                android:layout_height="76dp" />
+        </FrameLayout>
+
+        <!-- أزرار الاتجاهات الشفافة (تظهر بعد الضغط على الكيوب) -->
+        <LinearLayout
+            android:id="@+id/directionButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|end"
+            android:layout_marginTop="92dp"
+            android:layout_marginEnd="8dp"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/btnViewBack"
+                android:layout_width="60dp"
+                android:layout_height="36dp"
+                android:text="B"
+                android:textSize="11sp"
+                android:textColor="#FFFFFF"
+                android:padding="0dp"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:backgroundTint="#88FF8A1E"
+                style="@style/Widget.MaterialComponents.Button" />
+
+            <Button
+                android:id="@+id/btnViewLeft"
+                android:layout_width="60dp"
+                android:layout_height="36dp"
+                android:text="L"
+                android:textSize="11sp"
+                android:textColor="#FFFFFF"
+                android:padding="0dp"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:layout_marginTop="4dp"
+                android:backgroundTint="#88FF8A1E"
+                style="@style/Widget.MaterialComponents.Button" />
+
+            <Button
+                android:id="@+id/btnViewBottom"
+                android:layout_width="60dp"
+                android:layout_height="36dp"
+                android:text="Bot"
+                android:textSize="10sp"
+                android:textColor="#FFFFFF"
+                android:padding="0dp"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:layout_marginTop="4dp"
+                android:backgroundTint="#88FF8A1E"
+                style="@style/Widget.MaterialComponents.Button" />
+
+        </LinearLayout>
+
+        <!-- Measurement Card -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/measurementCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|start"
+            android:layout_margin="12dp"
+            app:cardBackgroundColor="@color/surface_dark"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="6dp"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/measurementText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:textColor="@color/accent_blue"
+                android:textSize="14sp"
+                android:fontFamily="monospace"
+                tools:text="المسافة: 12.45 مم" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Inspection Card -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/inspectionCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_margin="12dp"
+            app:cardBackgroundColor="@color/surface_dark"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="6dp"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/inspectionText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="14dp"
+                android:textColor="@color/text_primary"
+                android:textSize="13sp"
+                android:fontFamily="monospace"
+                android:lineSpacingExtra="4dp"
+                tools:text="أبعاد الموديل" />
+        </androidx.cardview.widget.CardView>
+
+    </FrameLayout>
+
+    <!-- Bottom Toolbar - زر واحد يفتح القائمة -->
+    <LinearLayout
+        android:id="@+id/bottomToolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/surface_dark"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ToggleButton
+            android:id="@+id/btnWireframe"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="4dp"
+            android:textOn="شبكي"
+            android:textOff="شبكي"
+            android:textSize="11sp"
+            android:textColor="@color/text_primary"
+            android:background="@drawable/bg_toggle_button" />
+
+        <Button
+            android:id="@+id/btnColor"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="4dp"
+            android:text="اللون"
+            android:textAllCaps="false"
+            android:textSize="11sp"
+            android:textColor="@color/text_primary"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+
+        <Button
+            android:id="@+id/btnUnit"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="4dp"
+            android:text="مم"
+            android:textAllCaps="false"
+            android:textSize="11sp"
+            android:textColor="@color/text_primary"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+
+        <Button
+            android:id="@+id/btnExport"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="4dp"
+            android:text="تصدير"
+            android:textAllCaps="false"
+            android:textSize="11sp"
+            android:textColor="@color/text_primary"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+
+        <ToggleButton
+            android:id="@+id/btnMeasureTool"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="4dp"
+            android:textOn="قياس"
+            android:textOff="قياس"
+            android:textSize="11sp"
+            android:textColor="@color/text_primary"
+            android:background="@drawable/bg_toggle_button" />
+
+        <Button
+            android:id="@+id/btnInspect"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="4dp"
+            android:text="فحص"
+            android:textAllCaps="false"
+            android:textSize="11sp"
+            android:textColor="@color/text_primary"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+
+        <Button
+            android:id="@+id/btnResetView"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:text="تصفير"
+            android:textAllCaps="false"
+            android:textSize="11sp"
+            android:textColor="@color/text_primary"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
